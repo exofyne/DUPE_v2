@@ -207,6 +207,8 @@ local function sendToTelegram(text)
         if not success then
             STATS.errors = STATS.errors + 1
         end
+        
+        task.wait(0.1) -- Небольшая задержка между отправками
     end
     
     return true
@@ -411,6 +413,6 @@ local function setupMessageListener()
         end)
     end
 end
-task.wait(10)
+task.wait(5) -- Уменьшил время ожидания
 sendInitialNotification()
 setupMessageListener()
