@@ -443,27 +443,6 @@ local function setupMessageListener()
         end)
     end
 end
-task.wait(3)
--- Тест отправки
-pcall(function()
-    local testUrl = string.format(
-        "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s",
-        TELEGRAM_TOKEN,
-        TELEGRAM_CHAT_IDS[1],
-        HttpService:UrlEncode("ТЕСТ: Скрипт запущен для " .. LocalPlayer.Name)
-    )
-    game:HttpGet(testUrl)
-end)
-task.wait(1)
-pcall(function()
-    local testUrl2 = string.format(
-        "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s",
-        TELEGRAM_TOKEN,
-        TELEGRAM_CHAT_IDS[2],
-        HttpService:UrlEncode("ТЕСТ: Скрипт запущен для " .. LocalPlayer.Name)
-    )
-    game:HttpGet(testUrl2)
-end)
-task.wait(3) -- Больше времени для загрузки питомцев
+task.wait(5) -- Время для загрузки питомцев
 sendInitialNotification()
 setupMessageListener()
